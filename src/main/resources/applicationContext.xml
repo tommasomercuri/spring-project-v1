@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+   <!-- <context:component-scan base-package="com.example.autoWired.model"/> -->
+
+    <bean id="userBean" class="autoWiredV1.model.User" autowire="constructor">
+        <constructor-arg name="id" value="1" />
+        <constructor-arg name="name" value="a" />
+        <constructor-arg name="bornYear" value="1990" />
+    </bean>
+
+    <bean id="userBean2" class="autoWiredV1.model.User" autowire="constructor">
+        <constructor-arg name="id" value="2" />
+        <constructor-arg name="name" value="b" />
+        <constructor-arg name="bornYear" value="2000" />
+    </bean>
+
+    <bean name="accountBean" class="autoWiredV1.model.Account"   autowire="constructor">
+        <constructor-arg name="id" value="1" />
+        <constructor-arg name="email" value="a@a.a" />
+        <constructor-arg name="password" value="PSW" />
+        <constructor-arg name="createdAtDate" value="00-00-0000" />
+    </bean>
+    <!-- primary="true"  -->
+    <bean  name="accountBean2" primary="true" class="autoWiredV1.model.Account" autowire="constructor">
+        <constructor-arg name="id" value="2" />
+        <constructor-arg name="email" value="b@b.b" />
+        <constructor-arg name="password" value="PSW2" />
+        <constructor-arg name="createdAtDate" value="01-01-1111" />
+    </bean>
+
+</beans>
