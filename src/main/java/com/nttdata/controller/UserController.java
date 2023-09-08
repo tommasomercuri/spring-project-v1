@@ -15,6 +15,8 @@ public class UserController {
     public String createUserPOST(@RequestBody CreateUserDto userRequest) {
         return (userQueryService.createNewUser(userRequest)).toString();
     }
+
+    //Da fixare
     @GetMapping("/retrieveUserById")
     public String createUserPOST() {
         return userQueryService.retrieveUserById("").toString();
