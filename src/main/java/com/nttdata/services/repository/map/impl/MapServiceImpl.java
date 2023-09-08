@@ -37,7 +37,7 @@ public class MapServiceImpl implements MapService {
             userQueryService.createNewUser(
                     dataMapDto.getUser()
             )
-        );
+                );
         System.out.println("Added "+ dataMapDto.getClass()+" to "+ createdKey.getClass());
         return true;
     }

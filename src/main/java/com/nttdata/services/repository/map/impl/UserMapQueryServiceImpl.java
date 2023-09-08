@@ -3,9 +3,12 @@ package com.nttdata.services.repository.map.impl;
 import com.nttdata.model.base.Account;
 import com.nttdata.model.base.User;
 import com.nttdata.model.dto.account.CreateAccountDto;
+import com.nttdata.model.dto.map.DataMapDto;
 import com.nttdata.model.dto.user.CreateUserDto;
+import com.nttdata.repository.MapRepo;
 import com.nttdata.services.repository.AccountQueryService;
 import com.nttdata.services.repository.UserQueryService;
+import com.nttdata.services.repository.map.MapService;
 import com.nttdata.services.uuid.UuidService;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,12 +17,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Map;
+import java.util.Set;
 
 @Service
 @Component
 @Data
 @NoArgsConstructor
 public class UserMapQueryServiceImpl implements UserQueryService {
+    Map<Account, User> createdKey = MapRepo.getCreatedKey();
+    private User user;
     @Autowired
     UuidService uuidService;
     @Override
@@ -31,6 +38,12 @@ public class UserMapQueryServiceImpl implements UserQueryService {
 
     @Override
     public User retrieveUserById(String id) {
+        /*
+        Set<Account> acc = createdKey.keySet();
+        for (Account ac : acc){
+            System.out.println(ac.toString());
+        }
+         */
         return null;
     }
 
