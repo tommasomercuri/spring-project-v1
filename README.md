@@ -3,9 +3,10 @@
 - Da implementare Crud
 - Da implementare connessione a DB Mysql
 
+
 ```
 url Api Creazione Account:
-http://localhost:8080/api/createAccount
+http://localhost:8080/api/account/createAccount
 
 {
         "email":"a@a.a",
@@ -16,7 +17,7 @@ http://localhost:8080/api/createAccount
 
 ```
 url Api Creazione User:
-http://localhost:8080/api/createUser
+http://localhost:8080/api/user/createUser
 
 {
         "name":"Tommaso",
