@@ -14,7 +14,6 @@ public class Account {
     private String email;
     private String password;
     private Date createdAtDate;
-
     public Account(String email, String password) {
         this.email = email;
         this.password = password;
