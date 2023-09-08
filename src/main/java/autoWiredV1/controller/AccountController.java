@@ -7,8 +7,6 @@ import autoWiredV1.services.CreateNewAccountService;
 import autoWiredV1.services.CreateNewUserService;
 import autoWiredV1.services.GetLocalMapRepoService;
 import autoWiredV1.services.PutIntoLocalMapRepoService;
-import autoWiredV1.services.impl.CreateNewAccountServiceImpl;
-import autoWiredV1.services.impl.CreateNewUserServiceImpl;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -14,12 +14,10 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 public class CreateNewAccountServiceImpl implements CreateNewAccountService {
-    //DataRequest dataRequest ;
     @Override
     public Account createNewAccount(String email, String password) {
             Date date = new Date();
             Account account = new Account("" , email, password, date);
-            //dataRequest.setAccount(account);
             System.out.println("Created new account:" + account.toString());
         return account;
     }

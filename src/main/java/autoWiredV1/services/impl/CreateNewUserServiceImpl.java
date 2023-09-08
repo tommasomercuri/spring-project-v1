@@ -15,11 +15,9 @@ import org.springframework.stereotype.Service;
 public class CreateNewUserServiceImpl implements CreateNewUserService {
     @Override
     public User createNewUser( String name, String bornYear) {
-        //DataRequest dataRequest = new DataRequest();
         System.out.println(name);
         System.out.println(bornYear);
             User user = new User("", name, bornYear);
-        //dataRequest.setUser(user);
             System.out.println("Created new user:" + user.toString());
         return user;
     }
