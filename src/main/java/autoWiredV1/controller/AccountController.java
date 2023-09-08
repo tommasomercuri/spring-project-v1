@@ -5,15 +5,13 @@ import autoWiredV1.model.DataRequest;
 import autoWiredV1.model.User;
 import autoWiredV1.services.CreateNewAccountService;
 import autoWiredV1.services.CreateNewUserService;
+import autoWiredV1.services.GetLocalMapRepoService;
 import autoWiredV1.services.PutIntoLocalMapRepoService;
 import autoWiredV1.services.impl.CreateNewAccountServiceImpl;
 import autoWiredV1.services.impl.CreateNewUserServiceImpl;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @NoArgsConstructor
@@ -21,15 +19,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccountController {
 
     @Autowired
-    CreateNewAccountService createNewAccountService ;
+    CreateNewAccountService createNewAccountService;
     @Autowired
     CreateNewUserService createNewUserService;
     @Autowired
     PutIntoLocalMapRepoService putIntoLocalMapRepoService;
-
+    @Autowired
+    GetLocalMapRepoService getLocalMapRepoService;
 
     @PostMapping("/createAccount")
-    public String createAccountPOST(@RequestBody Account accountRequest){
+    public String createAccountPOST(@RequestBody Account accountRequest) {
         return (
                 createNewAccountService.createNewAccount(
                         accountRequest.getEmail(),
@@ -39,17 +38,17 @@ public class AccountController {
     }
 
     @PostMapping("/createUser")
-        public String createUserPOST(@RequestBody User userRequest){
-            return (
-                    createNewUserService.createNewUser(
-                            userRequest.getName(),
-                            userRequest.getBornYear()
-                    )
-            ).toString();
+    public String createUserPOST(@RequestBody User userRequest) {
+        return (
+                createNewUserService.createNewUser(
+                        userRequest.getName(),
+                        userRequest.getBornYear()
+                )
+        ).toString();
     }
 
     @PostMapping("/create")
-    public boolean createUserPOST(@RequestBody DataRequest dataRequest){
+    public boolean createUserPOST(@RequestBody DataRequest dataRequest) {
         return putIntoLocalMapRepoService.
                 putIntoLocalMap(
                         createNewAccountService.createNewAccount(
@@ -63,5 +62,9 @@ public class AccountController {
                 );
     }
 
+    @GetMapping("/printData")
+    public String createUserPOST() {
+        return getLocalMapRepoService.getMap();
+    }
 }
 
