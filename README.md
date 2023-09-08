@@ -1,5 +1,7 @@
 # spring-project-autowired
 
+- Da implementare Crud
+- Da implementare connessione a DB Mysql
 
 ```
 url Api Creazione Account:
