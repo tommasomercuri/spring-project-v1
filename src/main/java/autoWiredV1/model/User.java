@@ -1,31 +1,21 @@
 package autoWiredV1.model;
 
-import jakarta.annotation.Resource;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @Data
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class User {
-    private String id;
+    private String idUser;
     private String name;
-    private int bornYear;
+    private String bornYear;
 
-    @Autowired
-    //@Resource(name="accountBean2")
-    //@Qualifier("accountBean2")
-    private Account account;
-    
-    public User(Account acc){
-        this.account = acc;
-    }
-
-    public void callAcc(){
-        System.out.println(account.toString());
+    public User(String name, String bornYear) {
+        this.name = name;
+        this.bornYear = bornYear;
     }
 }
