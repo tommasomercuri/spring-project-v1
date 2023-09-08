@@ -6,22 +6,27 @@ import autoWiredV1.model.User;
 import autoWiredV1.services.CreateNewAccountService;
 import autoWiredV1.services.CreateNewUserService;
 import autoWiredV1.services.PutIntoLocalMapRepoService;
+import autoWiredV1.services.impl.CreateNewAccountServiceImpl;
+import autoWiredV1.services.impl.CreateNewUserServiceImpl;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.xml.crypto.Data;
-
 @RestController
+@NoArgsConstructor
 @RequestMapping("/api")
 public class AccountController {
-    CreateNewAccountService createNewAccountService;
+
+    @Autowired
+    CreateNewAccountService createNewAccountService ;
+    @Autowired
     CreateNewUserService createNewUserService;
+    @Autowired
     PutIntoLocalMapRepoService putIntoLocalMapRepoService;
-    public AccountController(CreateNewAccountService createNewAccountService) {
-        this.createNewAccountService = createNewAccountService;
-    }
+
 
     @PostMapping("/createAccount")
     public String createAccountPOST(@RequestBody Account accountRequest){
