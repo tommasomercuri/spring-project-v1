@@ -1,6 +1,7 @@
-package autoWiredV1.model;
+package autoWiredV1.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import autoWiredV1.model.base.Account;
+import autoWiredV1.model.base.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DataRequest {
     //@JsonProperty("Account")
-    private Account account;
+    private AccountDto account;
     private User user;
 }

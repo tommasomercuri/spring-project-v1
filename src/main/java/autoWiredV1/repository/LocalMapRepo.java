@@ -1,9 +1,10 @@
 package autoWiredV1.repository;
 
-import autoWiredV1.model.Account;
-import autoWiredV1.model.User;
+import autoWiredV1.model.base.Account;
+import autoWiredV1.model.base.User;
 import lombok.Data;
 import lombok.Getter;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;

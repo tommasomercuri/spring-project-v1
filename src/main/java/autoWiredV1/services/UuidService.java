@@ -1,5 +1,5 @@
 package autoWiredV1.services;
 
-public interface CreateNewUuidService {
+public interface UuidService {
     public String createNewUuid();
 }

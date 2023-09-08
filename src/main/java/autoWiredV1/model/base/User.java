@@ -1,4 +1,4 @@
-package autoWiredV1.model;
+package autoWiredV1.model.base;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

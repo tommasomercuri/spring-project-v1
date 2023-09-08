@@ -1,4 +1,4 @@
-package autoWiredV1.model;
+package autoWiredV1.model.base;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +8,6 @@ import java.util.Date;
 
 @Data
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class Account {
     private String idAccount;
     private String email;
