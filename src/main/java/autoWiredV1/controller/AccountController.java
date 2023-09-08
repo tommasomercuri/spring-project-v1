@@ -60,8 +60,9 @@ public class AccountController {
     }
 
     @GetMapping("/printData")
-    public String createUserPOST() {
+    public String printDataGET() {
         return getLocalMapRepoService.getMap();
     }
+
 }
 
