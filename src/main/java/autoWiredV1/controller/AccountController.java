@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 @NoArgsConstructor
 @RequestMapping("/api")
 public class AccountController {
-
     @Autowired
     CreateNewAccountService createNewAccountService;
     @Autowired
