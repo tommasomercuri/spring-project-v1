@@ -7,9 +7,7 @@ import com.nttdata.model.dto.user.CreateUserDto;
 public interface UserQueryService {
     User createNewUser(CreateUserDto userRequest, String idAccount);
     User retrieveUserById(String id);
-    boolean updateUser(User user);
-    boolean updateAccountEmail(Account account);
-    boolean updateAccountPassword(Account account);
+    boolean updateNameById(String id, String name);
     boolean deleteUser(String id);
     String getAllMap();
 

@@ -37,7 +37,7 @@ public class AccountMapQueryServiceImpl implements AccountQueryService {
 
     @Override
     public String getAllMap() {
-        return accountMap.getMap().toString();
+        return accountMap.getMap().toString();  //!!!!!!!! DA RENDERE MAP
     }
 
     @Override
@@ -56,10 +56,13 @@ public class AccountMapQueryServiceImpl implements AccountQueryService {
         return true;
     }
     @Override
-    public boolean deleteAccount(String id) {
+    public boolean deleteAccountById(String id) {
         accountMap.getMap().remove(id);
         return true;
     }
 
+    public boolean checkIfAccountExistById(String id) {
+            return accountMap.getMap().containsKey(id);
+    }
 
 }

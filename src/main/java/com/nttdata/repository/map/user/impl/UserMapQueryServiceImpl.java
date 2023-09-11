@@ -3,6 +3,8 @@ package com.nttdata.repository.map.user.impl;
 import com.nttdata.model.base.Account;
 import com.nttdata.model.base.User;
 import com.nttdata.model.dto.user.CreateUserDto;
+import com.nttdata.repository.AccountQueryService;
+import com.nttdata.repository.map.account.AccountMapRepo;
 import com.nttdata.repository.map.user.UserMapRepo;
 import com.nttdata.repository.UserQueryService;
 import com.nttdata.services.uuid.UuidService;
@@ -18,16 +20,20 @@ import org.springframework.stereotype.Service;
 @NoArgsConstructor
 public class UserMapQueryServiceImpl implements UserQueryService {
     @Autowired
+    AccountMapRepo accountMapRepo;
+    @Autowired
     UserMapRepo userMap;
+    @Autowired
+    AccountQueryService accountQueryService;
 
     @Autowired
     UuidService uuidService;
     @Override
     public User createNewUser(CreateUserDto userRequest, String idAccount) {
+        if(!accountQueryService.checkIfAccountExistById(idAccount)){
+            throw new IllegalArgumentException("Id account does not exist");
+        }
         String id = uuidService.createNewUuid();
-
-        //controllo esistenza e inserisco
-
         User user = new User(id, userRequest.getName(), userRequest.getBornYear(), idAccount);
         userMap.getMap().put(id,user);
         return user;
@@ -40,30 +46,20 @@ public class UserMapQueryServiceImpl implements UserQueryService {
 
     @Override
     public User retrieveUserById(String id) {
-
-        return null;
+        return userMap.getMap().get(id);
     }
 
     @Override
-    public boolean updateUser(User user) {
-        return false;
-    }
-
-    @Override
-    public boolean updateAccountEmail(Account account) {
-        return false;
-    }
-
-    @Override
-    public boolean updateAccountPassword(Account account) {
-        return false;
+    public boolean updateNameById(String id, String name) {
+        userMap.getMap().get(id).setName(name);
+        return true;
     }
 
     @Override
     public boolean deleteUser(String id) {
-        return false;
+        userMap.getMap().remove(id);
+        return true;
     }
-
 
 
 }

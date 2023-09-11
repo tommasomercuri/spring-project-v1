@@ -10,5 +10,4 @@ public class CreateUserDto {
     private String name;
     private String bornYear;
     private String idAccount;
-
 }

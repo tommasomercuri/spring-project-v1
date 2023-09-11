@@ -8,8 +8,9 @@ public interface AccountQueryService {
     Account retrieveAccountById(String id);
     boolean updateAccountEmailById(String id, String email);
     boolean updateAccountPasswordById(String id, String password);
-    boolean deleteAccount(String id);
+    boolean deleteAccountById(String id);
     String getAllMap();
+    public boolean checkIfAccountExistById(String id);
 
 
 }
