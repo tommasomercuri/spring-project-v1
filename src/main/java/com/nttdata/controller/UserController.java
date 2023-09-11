@@ -1,8 +1,8 @@
 package com.nttdata.controller;
 
+import com.nttdata.model.base.User;
 import com.nttdata.model.dto.user.CreateUserDto;
-import com.nttdata.services.repository.UserQueryService;
-import com.nttdata.services.user.UserService;
+import com.nttdata.repository.UserQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private final UserQueryService userQueryService;
     @PostMapping("/createUser")
-    public String createUserPOST(@RequestBody CreateUserDto userRequest) {
-        return (userQueryService.createNewUser(userRequest)).toString();
+    public User createUserPOST(@RequestBody CreateUserDto userRequest, String idAccount) {
+        return userQueryService.createNewUser(userRequest, idAccount);
     }
 
     //Da fixare

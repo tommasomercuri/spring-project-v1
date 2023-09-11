@@ -1,17 +1,19 @@
-package com.nttdata.repository;
+package com.nttdata.repository.map.user;
 
 import com.nttdata.model.base.Account;
 import com.nttdata.model.base.User;
 import lombok.Data;
-import lombok.Getter;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Repository
 @Data
-public class MapRepo {
-    @Getter
-    private static Map<Account, User> createdKey = new HashMap<>();
+public class UserMapRepo {
+    private Map<String, User> map ;
+    public UserMapRepo(Map<String, User> map) {
+        this.map = map;
+    }
+
 }
+

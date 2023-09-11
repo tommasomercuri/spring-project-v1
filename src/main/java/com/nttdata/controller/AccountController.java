@@ -2,9 +2,10 @@ package com.nttdata.controller;
 
 import com.nttdata.model.base.Account;
 import com.nttdata.model.dto.account.CreateAccountDto;
-import com.nttdata.services.account.AccountService;
-import com.nttdata.services.repository.AccountQueryService;
+import com.nttdata.repository.AccountQueryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,16 +13,35 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/account")
 public class AccountController {
     private final AccountQueryService accountQueryService;
-
-    //Restituisce account
     @PostMapping("/createAccount")
-    public String createAccountPOST(@RequestBody CreateAccountDto accountRequest) {
-        return (accountQueryService.createNewAccount(accountRequest)).toString();
+    public Account createAccountPOST(@RequestBody CreateAccountDto accountRequest) {
+        return accountQueryService.createNewAccount(accountRequest);
     }
 
-    @GetMapping("/printAccountData")
-    public Account printAccountDataGET() {
-        return null;
+    @GetMapping("/getAll")
+    public String getAccountsGET() {
+        return accountQueryService.getAllMap();
+    }
+
+    @GetMapping("/get/{id}")
+    public Account getAccountGET(@PathVariable String id) {
+        return accountQueryService.retrieveAccountById(id);
+    }
+
+    //PATH PARAM
+    @PatchMapping(value = "/email/{id}", consumes = MediaType.TEXT_PLAIN_VALUE)  //PATCH
+    public boolean updateAccountEmailByIdPATCH(@PathVariable String id, @RequestBody String email) {
+        return accountQueryService.updateAccountEmailById(id, email);
+    }
+
+    @PatchMapping(value = "/password/{id}", consumes = MediaType.TEXT_PLAIN_VALUE)  //PATCH
+    public boolean updateAccountPasswordByIdPATCH(@PathVariable String id, @RequestBody String password) {
+        return accountQueryService.updateAccountPasswordById(id, password);
+    }
+
+    @PatchMapping(value = "/delete/{id}")  //PATCH
+    public boolean updateAccountPasswordByIdPATCH(@PathVariable String id) {
+        return accountQueryService.deleteAccount(id);
     }
 
 }

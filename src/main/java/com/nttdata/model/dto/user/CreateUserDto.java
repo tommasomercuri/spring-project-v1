@@ -9,4 +9,6 @@ public class CreateUserDto {
     private String idUser;
     private String name;
     private String bornYear;
+    private String idAccount;
+
 }

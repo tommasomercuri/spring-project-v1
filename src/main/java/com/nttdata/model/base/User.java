@@ -13,9 +13,6 @@ public class User {
     private String idUser;
     private String name;
     private String bornYear;
+    private String idAccount;
 
-    public User(String name, String bornYear) {
-        this.name = name;
-        this.bornYear = bornYear;
-    }
 }

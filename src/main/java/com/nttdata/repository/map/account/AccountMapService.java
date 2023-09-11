@@ -1,9 +1,8 @@
-package com.nttdata.services.repository.map;
+package com.nttdata.repository.map.account;
 
 import com.nttdata.model.dto.map.DataMapDto;
 
-public interface MapService {
-    String getAllMap();
+public interface AccountMapService {
     boolean putIntoLocalMap(DataMapDto dataMapDto);
 
 }
