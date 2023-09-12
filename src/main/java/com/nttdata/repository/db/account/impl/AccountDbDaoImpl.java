@@ -2,7 +2,7 @@ package com.nttdata.repository.db.account.impl;
 
 import com.nttdata.model.base.Account;
 import com.nttdata.model.dto.account.CreateAccountDto;
-import com.nttdata.repository.AccountQueryService;
+import com.nttdata.repository.AccountDao;
 import com.nttdata.service.uuid.UuidService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import java.util.Date;
 
 @Slf4j
 @Repository("accountDb")
-public class AccountDbQueryServiceImpl implements AccountQueryService {
+public class AccountDbDaoImpl implements AccountDao {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -27,8 +27,7 @@ public class AccountDbQueryServiceImpl implements AccountQueryService {
         String query = "INSERT INTO Account (idAccount,email,password,createdAtDate) VALUES (?,?,?,CURRENT_TIME());";
         jdbcTemplate.update(query, id, accountRequest.getEmail(),accountRequest.getPassword());
         Date date = new Date();
-        Account account = new Account( id, accountRequest.getEmail(), accountRequest.getPassword(), date);
-        return account;
+        return new Account(id, accountRequest.getEmail(), accountRequest.getPassword(), date);
     }
 
     @Override

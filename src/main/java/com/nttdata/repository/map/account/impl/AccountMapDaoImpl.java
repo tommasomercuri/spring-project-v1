@@ -3,16 +3,14 @@ package com.nttdata.repository.map.account.impl;
 import com.nttdata.model.base.Account;
 import com.nttdata.model.dto.account.CreateAccountDto;
 import com.nttdata.repository.map.account.AccountMapRepo;
-import com.nttdata.repository.AccountQueryService;
+import com.nttdata.repository.AccountDao;
 import com.nttdata.service.regularExpression.EmailRegularExpressionService;
 import com.nttdata.service.uuid.UuidService;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
@@ -20,7 +18,7 @@ import java.util.Date;
 @Repository("accountMap")
 @Data
 @NoArgsConstructor
-public class AccountMapQueryServiceImpl implements AccountQueryService {
+public class AccountMapDaoImpl implements AccountDao {
     @Autowired
     AccountMapRepo accountMap;
 

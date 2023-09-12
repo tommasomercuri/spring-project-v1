@@ -3,7 +3,7 @@ package com.nttdata.repository;
 import com.nttdata.model.base.Account;
 import com.nttdata.model.dto.account.CreateAccountDto;
 
-public interface AccountQueryService {
+public interface AccountDao {
     Account createNewAccount(CreateAccountDto accountRequest);
     Account retrieveAccountById(String id);
     boolean updateAccountEmailById(String id, String email);

@@ -2,10 +2,10 @@ package com.nttdata.repository.map.user.impl;
 
 import com.nttdata.model.base.User;
 import com.nttdata.model.dto.user.CreateUserDto;
-import com.nttdata.repository.AccountQueryService;
+import com.nttdata.repository.AccountDao;
 import com.nttdata.repository.map.account.AccountMapRepo;
 import com.nttdata.repository.map.user.UserMapRepo;
-import com.nttdata.repository.UserQueryService;
+import com.nttdata.repository.UserDao;
 import com.nttdata.service.uuid.UuidService;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 @Data
 @NoArgsConstructor
 @Repository("userMap")
-public class UserMapQueryServiceImpl implements UserQueryService {
+public class UserMapDaoImpl implements UserDao {
     @Autowired
     AccountMapRepo accountMapRepo;
     @Autowired
@@ -30,13 +30,13 @@ public class UserMapQueryServiceImpl implements UserQueryService {
 
     @Autowired
     @Qualifier("accountMap")
-    private AccountQueryService accountQueryService;
+    private AccountDao accountDao;
     //Non utilizzo constructor Injection per Qualifier
        //private final AccountQueryService accountQueryService;
 
     @Override
     public User createNewUser(CreateUserDto userRequest, String idAccount) {
-        if(!accountQueryService.checkIfAccountExistById(idAccount)){
+        if(!accountDao.checkIfAccountExistById(idAccount)){
             throw new IllegalArgumentException("Id account does not exist");
         }
         String id = uuidService.createNewUuid();

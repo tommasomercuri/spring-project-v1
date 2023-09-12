@@ -3,7 +3,7 @@ package com.nttdata.repository;
 import com.nttdata.model.base.User;
 import com.nttdata.model.dto.user.CreateUserDto;
 
-public interface UserQueryService {
+public interface UserDao {
     User createNewUser(CreateUserDto userRequest, String idAccount);
     User retrieveUserById(String id);
     boolean updateUserNameById(String id, String name);
