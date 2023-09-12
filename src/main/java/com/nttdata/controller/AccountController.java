@@ -3,7 +3,10 @@ package com.nttdata.controller;
 import com.nttdata.model.base.Account;
 import com.nttdata.model.dto.account.CreateAccountDto;
 import com.nttdata.repository.AccountQueryService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +14,13 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/api/account")
 public class AccountController {
-    private final AccountQueryService accountQueryService;
+
+    @Autowired
+    @Qualifier("accountDb")
+    private AccountQueryService accountQueryService;
+    //Non utilizzo constructor Injection per Qualifier
+       //private final AccountQueryService accountQueryService;
+
     @PostMapping("/createAccount")
     public Account createAccountPOST(@RequestBody CreateAccountDto accountRequest) {
         return accountQueryService.createNewAccount(accountRequest);

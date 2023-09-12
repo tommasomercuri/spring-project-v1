@@ -6,27 +6,34 @@ import com.nttdata.repository.AccountQueryService;
 import com.nttdata.repository.map.account.AccountMapRepo;
 import com.nttdata.repository.map.user.UserMapRepo;
 import com.nttdata.repository.UserQueryService;
-import com.nttdata.services.uuid.UuidService;
+import com.nttdata.service.uuid.UuidService;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 @Service
 @Component
 @Data
 @NoArgsConstructor
+@Repository("userMap")
 public class UserMapQueryServiceImpl implements UserQueryService {
     @Autowired
     AccountMapRepo accountMapRepo;
     @Autowired
     UserMapRepo userMap;
     @Autowired
-    AccountQueryService accountQueryService;
+    UuidService uuidService;
 
     @Autowired
-    UuidService uuidService;
+    @Qualifier("accountMap")
+    private AccountQueryService accountQueryService;
+    //Non utilizzo constructor Injection per Qualifier
+       //private final AccountQueryService accountQueryService;
+
     @Override
     public User createNewUser(CreateUserDto userRequest, String idAccount) {
         if(!accountQueryService.checkIfAccountExistById(idAccount)){
@@ -53,7 +60,6 @@ public class UserMapQueryServiceImpl implements UserQueryService {
         userMap.getMap().get(id).setUsername(name);
         return true;
     }
-
     @Override
     public boolean deleteUser(String id) {
         userMap.getMap().remove(id);
