@@ -36,7 +36,7 @@ public class AccountMapQueryServiceImpl implements AccountQueryService {
     }
 
     @Override
-    public String getAllMap() {
+    public String getAll() {
         return accountMap.getMap().toString();  //!!!!!!!! DA RENDERE MAP
     }
 

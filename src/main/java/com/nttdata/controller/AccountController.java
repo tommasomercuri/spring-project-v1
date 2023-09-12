@@ -19,7 +19,7 @@ public class AccountController {
     //DEVO RITORNARE UNA MAPPA
     @GetMapping("/getAll")
     public String getAccountsGET() {
-        return accountQueryService.getAllMap();
+        return accountQueryService.getAll();
     }
     @GetMapping("/get/{id}")
     public Account getAccountGET(@PathVariable String id) {

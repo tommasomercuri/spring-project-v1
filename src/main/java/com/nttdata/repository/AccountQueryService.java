@@ -9,7 +9,7 @@ public interface AccountQueryService {
     boolean updateAccountEmailById(String id, String email);
     boolean updateAccountPasswordById(String id, String password);
     boolean deleteAccountById(String id);
-    String getAllMap();
+    String getAll();
     public boolean checkIfAccountExistById(String id);
 
 

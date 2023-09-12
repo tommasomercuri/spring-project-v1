@@ -1,6 +1,5 @@
 package com.nttdata.repository.map.user.impl;
 
-import com.nttdata.model.base.Account;
 import com.nttdata.model.base.User;
 import com.nttdata.model.dto.user.CreateUserDto;
 import com.nttdata.repository.AccountQueryService;
@@ -34,13 +33,13 @@ public class UserMapQueryServiceImpl implements UserQueryService {
             throw new IllegalArgumentException("Id account does not exist");
         }
         String id = uuidService.createNewUuid();
-        User user = new User(id, userRequest.getName(), userRequest.getBornYear(), idAccount);
+        User user = new User(id, userRequest.getUsername(), userRequest.getBornYear(), idAccount);
         userMap.getMap().put(id,user);
         return user;
     }
 
     @Override
-    public String getAllMap() {
+    public String getAll() {
         return userMap.getMap().toString();
     }
 
@@ -50,8 +49,8 @@ public class UserMapQueryServiceImpl implements UserQueryService {
     }
 
     @Override
-    public boolean updateNameById(String id, String name) {
-        userMap.getMap().get(id).setName(name);
+    public boolean updateUserNameById(String id, String name) {
+        userMap.getMap().get(id).setUsername(name);
         return true;
     }
 

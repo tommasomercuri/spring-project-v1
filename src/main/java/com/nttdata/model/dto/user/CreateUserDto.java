@@ -6,8 +6,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class CreateUserDto {
-    private String idUser;
-    private String name;
+    private String username;
     private String bornYear;
     private String idAccount;
 }

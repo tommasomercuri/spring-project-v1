@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class User {
     private String idUser;
-    private String name;
+    private String username;
     private String bornYear;
     private String idAccount;
 
