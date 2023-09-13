@@ -5,10 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class CreateAccountDto {
-    private String email;
-    private String password;
+public class UpdateAccountEmailByIdDto {
+    String id;
+    String email;
 }
-
-
-
