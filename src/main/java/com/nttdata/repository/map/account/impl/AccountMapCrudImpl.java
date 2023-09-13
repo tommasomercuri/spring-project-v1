@@ -3,7 +3,7 @@ package com.nttdata.repository.map.account.impl;
 import com.nttdata.model.base.Account;
 import com.nttdata.model.dto.account.CreateAccountDto;
 import com.nttdata.repository.map.account.AccountMapRepo;
-import com.nttdata.repository.AccountDao;
+import com.nttdata.repository.AccountCrud;
 import com.nttdata.service.regularExpression.EmailRegularExpressionService;
 import com.nttdata.service.uuid.UuidService;
 import lombok.Data;
@@ -18,7 +18,7 @@ import java.util.Date;
 @Repository("accountMap")
 @Data
 @NoArgsConstructor
-public class AccountMapDaoImpl implements AccountDao {
+public class AccountMapCrudImpl implements AccountCrud {
     @Autowired
     AccountMapRepo accountMap;
 
@@ -28,7 +28,7 @@ public class AccountMapDaoImpl implements AccountDao {
     @Autowired
     EmailRegularExpressionService emailRegularExpressionService;
     @Override
-    public Account createNewAccount(CreateAccountDto accountRequest) {
+    public Account insertNewAccount(CreateAccountDto accountRequest) {
         if(!emailRegularExpressionService.isValid(accountRequest.getEmail())){
             throw new IllegalArgumentException("Email is not valid");
         }

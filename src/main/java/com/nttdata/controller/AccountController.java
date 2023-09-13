@@ -2,7 +2,8 @@ package com.nttdata.controller;
 
 import com.nttdata.model.base.Account;
 import com.nttdata.model.dto.account.CreateAccountDto;
-import com.nttdata.repository.AccountDao;
+import com.nttdata.model.dto.account.CreatedResponse;
+import com.nttdata.repository.AccountCrud;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,36 +17,37 @@ public class AccountController {
 
     @Autowired
     @Qualifier("accountDb")
-    private AccountDao accountDao;
+    private AccountCrud accountCrud;
     //Non utilizzo constructor Injection per Qualifier
        //private final AccountQueryService accountQueryService;
 
     @PostMapping("/createAccount")
-    public Account createAccountPOST(@RequestBody CreateAccountDto accountRequest) {
-        return accountDao.createNewAccount(accountRequest);
+    public Account insertAccountPOST(@RequestBody CreateAccountDto accountRequest) {
+        return accountCrud.insertNewAccount(accountRequest);
     }
-    //DEVO RITORNARE UNA MAPPA
+
+
     @GetMapping("/getAll")
     public String getAccountsGET() {
-        return accountDao.getAll();
+        return accountCrud.getAll();
     }
     @GetMapping("/get/{id}")
     public Account getAccountGET(@PathVariable String id) {
-        return accountDao.retrieveAccountById(id);
+        return accountCrud.retrieveAccountById(id);
     }
 
     //PATH PARAM
     @PatchMapping(value = "/email/{id}", consumes = MediaType.TEXT_PLAIN_VALUE)  //PATCH
     public boolean updateAccountEmailByIdPATCH(@PathVariable String id, @RequestBody String email) {
-        return accountDao.updateAccountEmailById(id, email);
+        return accountCrud.updateAccountEmailById(id, email);
     }
     @PatchMapping(value = "/password/{id}", consumes = MediaType.TEXT_PLAIN_VALUE)  //PATCH
     public boolean updateAccountPasswordByIdPATCH(@PathVariable String id, @RequestBody String password) {
-        return accountDao.updateAccountPasswordById(id, password);
+        return accountCrud.updateAccountPasswordById(id, password);
     }
     @PatchMapping(value = "/delete/{id}")  //PATCH
     public boolean deleteAccountByIdPATCH(@PathVariable String id) {
-        return accountDao.deleteAccountById(id);
+        return accountCrud.deleteAccountById(id);
     }
 
 }

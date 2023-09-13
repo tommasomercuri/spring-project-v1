@@ -27,4 +27,9 @@ public class AccountDetails {
     static AccountDetails create(String idAccount, String email, String password, Date createdAtDate){
         return new AccountDetails(idAccount,email,password,createdAtDate);
     }
+
+    public AccountDetails(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 }

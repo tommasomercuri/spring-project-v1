@@ -19,11 +19,11 @@ public class UserDetails {
     @Column("username")
     private String username;
     @Column("bornYear")
-    private String bornYear;
+    private int bornYear;
     @Column("idAccount")
     private String idAccount;
 
-    static UserDetails create(String idUser, String username, String bornYear, String idAccount){
+    static UserDetails create(String idUser, String username, int bornYear, String idAccount){
         return new UserDetails(idUser,username,bornYear,idAccount);
     }
 
