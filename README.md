@@ -1,9 +1,5 @@
 # spring-project-autowired
 
-- Da implementare Crud
-- Da implementare connessione a DB Mysql
-
-
 ```
 url Api Creazione Account:
 http://localhost:8080/api/account/createAccount
