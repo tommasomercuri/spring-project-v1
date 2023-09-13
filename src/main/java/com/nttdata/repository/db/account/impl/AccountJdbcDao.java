@@ -2,6 +2,8 @@ package com.nttdata.repository.db.account.impl;
 
 import com.nttdata.model.base.Account;
 import com.nttdata.model.dto.account.CreateAccountDto;
+import com.nttdata.model.dto.account.UpdateAccountEmailByIdDto;
+import com.nttdata.model.dto.account.UpdateAccountPasswordByIdDto;
 import com.nttdata.repository.AccountCrud;
 import com.nttdata.repository.db.account.AccountDaoInterface;
 import com.nttdata.repository.db.account.AccountDetails;
@@ -14,6 +16,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,29 +63,36 @@ public class AccountJdbcDao implements AccountDaoInterface<AccountDetails>{
         return Optional.ofNullable(account);
     }
 
-    @Override
-    public Optional<AccountDetails> addNewAccount(CreateAccountDto accountRequest) {
-/*
+    public Account addNewAccount(CreateAccountDto accountRequest) {
         String insertQuery = "INSERT INTO Account (idAccount, email, password, createdAtDate) " +
                 "values (?,?,?, CURRENT_TIME())";
-        AccountDetails account = null;
-        try{
-            account = jdbcTemplate.queryForObject(insertQuery,rowMap,
-                    uuidService.createNewUuid(),
+
+        String uuid = uuidService.createNewUuid();
+
+        jdbcTemplate.update(insertQuery,
+                    uuid,
                     accountRequest.getEmail(),
                     accountRequest.getPassword()
             );
-        }catch(DataAccessException dataAccessException){
-            log.warn(dataAccessException.toString());
-        }
-        return Optional.ofNullable(account);
-*/
-        return null;
+        Date date = new Date();
+        return new Account(uuid,accountRequest.getEmail(),accountRequest.getPassword(),date);
     }
 
     @Override
-    public void updateAccount(AccountDetails accountDetails) {
-
+    public void updateAccountEmailById(String email, String id ) {
+        String query = "UPDATE Account set email = ? WHERE idAccount = ?";
+        jdbcTemplate.update(query,email, id);
     }
 
+    @Override
+    public void updateAccountPasswordById(String password, String id) {
+        String query = "UPDATE Account set password = ? WHERE idAccount = ?";
+        jdbcTemplate.update(query,password, id);
+    }
+
+    @Override
+    public void deleteAccountById(String id) {
+        String query = "DELETE FROM Account WHERE idAccount = ? ";
+        jdbcTemplate.update(query, id);
+    }
 }

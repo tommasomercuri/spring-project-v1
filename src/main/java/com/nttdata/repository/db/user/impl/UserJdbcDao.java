@@ -2,6 +2,7 @@ package com.nttdata.repository.db.user.impl;
 
 import com.nttdata.model.base.Account;
 import com.nttdata.model.dto.account.CreateAccountDto;
+import com.nttdata.model.dto.user.CreateUserDto;
 import com.nttdata.repository.AccountCrud;
 import com.nttdata.repository.db.user.UserDaoInterface;
 import com.nttdata.repository.db.user.UserDetails;
@@ -10,9 +11,10 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
-public class UserJdbcDao implements UserDaoInterface<UserDetails>, AccountCrud {
+public class UserJdbcDao implements UserDaoInterface<UserDetails>{
 
     private JdbcTemplate jdbcTemplate;
 
@@ -40,37 +42,18 @@ public class UserJdbcDao implements UserDaoInterface<UserDetails>, AccountCrud {
     }
 
     @Override
-    public Account insertNewAccount(CreateAccountDto accountRequest) {
-        return null;
+    public Optional<UserDetails> getById(String id) {
+        return Optional.empty();
     }
 
     @Override
-    public Account retrieveAccountById(String id) {
-        return null;
+    public Optional<UserDetails> addNewUser(CreateUserDto createUserDto) {
+        return Optional.empty();
     }
 
     @Override
-    public boolean updateAccountEmailById(String id, String email) {
-        return false;
+    public void updateAccount(UserDetails userDetails) {
+
     }
 
-    @Override
-    public boolean updateAccountPasswordById(String id, String password) {
-        return false;
-    }
-
-    @Override
-    public boolean deleteAccountById(String id) {
-        return false;
-    }
-
-    @Override
-    public String getAll() {
-        return null;
-    }
-
-    @Override
-    public boolean checkIfAccountExistById(String id) {
-        return false;
-    }
 }

@@ -19,21 +19,22 @@ import java.util.Optional;
 @Repository("accountDb")
 public class AccountDbCrudImpl implements AccountCrud {
 
+    @Autowired
+    AccountJdbcDao accountJdbcDao;
+
     private static AccountDaoInterface<AccountDetails> accDao;
 
     public AccountDbCrudImpl(AccountDaoInterface<AccountDetails> accDao){
         this.accDao = accDao;
     }
 
-
+    //METODO IMPLEMENTATO TRAMITE L'UTILIZZO DI JDBCTEMPLATE STANDARD
     @Override
     public Account insertNewAccount(CreateAccountDto accountRequest) {
-        Optional<AccountDetails> account = accDao.addNewAccount(accountRequest);
-        AccountDetails acc = account.get();
-        return new Account(acc.getIdAccount(),acc.getEmail(),acc.getPassword(),acc.getCreatedAtDate());
-
+        return accountJdbcDao.addNewAccount(accountRequest);
     }
 
+    //METODO IMPLEMENTATO TRAMITE L'UTILIZZO DI JDBCTEMPLATE / DAO / ROWMAP / DATA ACCESS LAYER
     @Override
     public Account retrieveAccountById(String id) {
         Optional<AccountDetails> account = accDao.getById(id);
@@ -43,19 +44,23 @@ public class AccountDbCrudImpl implements AccountCrud {
 
     @Override
     public boolean updateAccountEmailById(String id, String email) {
-        return false;
+        accDao.updateAccountEmailById(id,email);
+        return true;
     }
 
     @Override
     public boolean updateAccountPasswordById(String id, String password) {
-        return false;
+        accDao.updateAccountPasswordById(id,password);
+        return true;
     }
 
     @Override
     public boolean deleteAccountById(String id) {
-        return false;
+        accDao.deleteAccountById(id);
+        return true;
     }
 
+    //METODO IMPLEMENTATO TRAMITE L'UTILIZZO DI JDBCTEMPLATE / DAO / ROWMAP / LIST / DATA ACCESS LAYER
     @Override
     public String getAll() {
         List<AccountDetails> accounts = accDao.list();

@@ -10,6 +10,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.Date;
 
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
