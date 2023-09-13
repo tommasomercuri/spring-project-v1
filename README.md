@@ -22,20 +22,3 @@ http://localhost:8080/api/createUser
 }
 
 ```
-
-
-```
-url:
-http://localhost:8080/api/create
-
-{
-    "account" : {
-        "email" : "a@a.a",
-        "password" : "abc"
-    },
-    "user" : {
-        "name":"Tommaso",
-        "bornYear":"2004" 
-    }
-}
-```
