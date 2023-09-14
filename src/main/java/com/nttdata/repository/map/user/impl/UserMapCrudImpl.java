@@ -35,12 +35,12 @@ public class UserMapCrudImpl implements UserCrud {
        //private final AccountQueryService accountQueryService;
 
     @Override
-    public User insertNewUser(CreateUserDto userRequest, String idAccount) {
-        if(!accountCrud.checkIfAccountExistById(idAccount)){
+    public User insertNewUser(CreateUserDto userRequest) {
+        if(!accountCrud.checkIfAccountExistById(userRequest.getIdAccount())){
             throw new IllegalArgumentException("Id account does not exist");
         }
         String id = uuidService.createNewUuid();
-        User user = new User(id, userRequest.getUsername(), userRequest.getBornYear(), idAccount);
+        User user = new User(id, userRequest.getUsername(), userRequest.getBornYear(), userRequest.getIdAccount());
         userMap.getMap().put(id,user);
         return user;
     }

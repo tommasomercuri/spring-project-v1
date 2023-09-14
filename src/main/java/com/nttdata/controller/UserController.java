@@ -22,7 +22,7 @@ public class UserController {
 
     @PostMapping("/createUser")
     public User insertUserPOST(@RequestBody CreateUserDto userRequest) {
-        return userCrud.insertNewUser(userRequest, userRequest.getIdAccount());
+        return userCrud.insertNewUser(userRequest);
     }
     @GetMapping("/getAll")
     public String getAccountsGET() {
